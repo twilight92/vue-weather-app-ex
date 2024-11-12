@@ -33,9 +33,9 @@ const useStore = defineStore("main", {
       this.toggle = !this.toggle;
     },
     // 비동기 함수 async
-    async getWeather(context) {
+    async getWeather() {
       const API_KEY = import.meta.env.VITE_API_KEY;
-      const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${context.state.weatherData.city}&appid=${API_KEY}`;
+      const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${this.weatherData.city}&appid=${API_KEY}`;
       await fetch(API_URL)
         .then((res) => res.json())
         .then((data) => {
