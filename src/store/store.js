@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 // store 만들기
 // main은 store의 이름이다.
-const useStore = defineStore("main", {
+export const useStore = defineStore("main", {
   state: () => ({
     // 상태변수 정의
     weatherData: {
