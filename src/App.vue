@@ -32,7 +32,7 @@ onMounted(() => {
 <template>
   <!-- <button @click="$store.dispatch('getWeather')">getWeather</button> -->
   <Navbar />
-  <div v-if="!$store.state.toggle">
+  <div v-if="!toggle">
     <MainComp />
   </div>
   <div v-else>
