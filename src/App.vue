@@ -20,7 +20,7 @@ const store = useStore();
   그냥 가져오는 것이 아니라
   storeToRefs 안에 래핑을 해서 가져와야 함
 */
-const { weatherData, toggle } = storeToRefs(store);
+const { toggle } = storeToRefs(store);
 
 // 앱이 실행되면 날씨 데이터 가져오기
 onMounted(() => {
