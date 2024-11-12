@@ -1,22 +1,22 @@
-import { createStore } from 'vuex';
+import { defineStore } from "pinia";
 
 // store 만들기
-export default createStore({
-  state: {
-    // initial state
-    count: 0,
+// main은 store의 이름이다.
+const useStore = defineStore("main", {
+  state: () => ({
+    // 상태변수 정의
     weatherData: {
-      icon: 'icon',
+      icon: "icon",
       temp: 0,
-      text: 'text',
-      location: 'location',
-      city: 'Seoul',
+      text: "text",
+      location: "location",
+      city: "Seoul",
     },
     toggle: false, // true일때 about을 보여주기
-  },
-  mutations: {
-    // mutations(데이터 변경)
-    addCount(state, palyload) { 
+  }),
+  actions: {
+    // 함수
+    addCount(state, palyload) {
       state.count += 1 + palyload;
     },
     updateWeather(state, payload) {
@@ -29,24 +29,23 @@ export default createStore({
     onSearchCity(state, payload) {
       state.weatherData.city = payload;
     },
-    toggleButton (state) {
+    toggleButton(state) {
       state.toggle = !state.toggle;
-    }
-  },
-  actions: {
-    getWeather(context) {
+    },
+    // 비동기 함수 async
+    async getWeather(context) {
       const API_KEY = import.meta.env.VITE_API_KEY;
-      const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${context.state.weatherData.city}&appid=${API_KEY}`
-      fetch(API_URL)
-        .then(res => res.json())
-        .then(data => {
+      const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${context.state.weatherData.city}&appid=${API_KEY}`;
+      await fetch(API_URL)
+        .then((res) => res.json())
+        .then((data) => {
           console.log(data);
           // mutation 함수로 날씨 정보 업데이트
-          context.commit('updateWeather', data);
+          context.commit("updateWeather", data);
         })
-        .catch(err => {
-          alert('에러가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-        })
-    }
-  }
-})
+        .catch((err) => {
+          alert("에러가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+        });
+    },
+  },
+});
