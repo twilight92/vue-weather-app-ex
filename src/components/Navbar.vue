@@ -1,12 +1,21 @@
 <template>
   <nav class="navbar">
-    <button class="toggle" @click="$store.commit('toggleButton')">
+    <button class="toggle" @click="store.toggleButton()">
       <font-awesome-icon class="icon" :icon="['fas', 'bars-staggered']" />
     </button>
   </nav>
 </template>
 
-<script setup></script>
+<script setup>
+import { useStore } from "../store/store";
+
+const store = useStore();
+
+/*
+  함수는 변수를 가져오지 않아도
+  자연스럽게 함수 호출이 가능하다
+*/
+</script>
 
 <style lang="scss" scoped>
 .navbar {
