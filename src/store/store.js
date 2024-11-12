@@ -41,7 +41,8 @@ const useStore = defineStore("main", {
         .then((data) => {
           console.log(data);
           // mutation 함수로 날씨 정보 업데이트
-          context.commit("updateWeather", data);
+          // context.commit("updateWeather", data);
+          this.updateWeather(data);
         })
         .catch((err) => {
           alert("에러가 발생했습니다. 잠시 후 다시 시도해 주세요.");
