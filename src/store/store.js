@@ -16,21 +16,21 @@ const useStore = defineStore("main", {
   }),
   actions: {
     // 함수
-    addCount(state, palyload) {
-      state.count += 1 + palyload;
+    addCount(palyload) {
+      this.count += 1 + palyload;
     },
-    updateWeather(state, payload) {
-      state.weatherData.icon = payload.weather[0].icon;
-      state.weatherData.temp = payload.main.temp;
-      state.weatherData.text = payload.weather[0].description;
-      state.weatherData.location = payload.sys.country;
-      state.weatherData.city = payload.name;
+    updateWeather(payload) {
+      this.weatherData.icon = payload.weather[0].icon;
+      this.weatherData.temp = payload.main.temp;
+      this.weatherData.text = payload.weather[0].description;
+      this.weatherData.location = payload.sys.country;
+      this.weatherData.city = payload.name;
     },
-    onSearchCity(state, payload) {
-      state.weatherData.city = payload;
+    onSearchCity(payload) {
+      this.weatherData.city = payload;
     },
-    toggleButton(state) {
-      state.toggle = !state.toggle;
+    toggleButton() {
+      this.toggle = !this.toggle;
     },
     // 비동기 함수 async
     async getWeather(context) {
