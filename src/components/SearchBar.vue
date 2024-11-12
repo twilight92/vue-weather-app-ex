@@ -9,8 +9,8 @@
         />
         <button
           @click="
-            $store.commit('onSearchCity', inputText);
-            $store.dispatch('getWeather');
+            store.onSearchCity(inputText);
+            store.getWeather();
           "
         >
           <font-awesome-icon class="icon" :icon="['fas', 'magnifying-glass']" />
@@ -23,6 +23,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useStore } from "../store/store";
+
+const store = useStore();
 
 const inputText = ref("");
 const emits = defineEmits(["onSearchCity"]); // 이벤트를 정의하고 함수를 반환
